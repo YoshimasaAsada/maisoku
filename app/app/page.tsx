@@ -48,9 +48,12 @@ export default function Home() {
             fullWidth
           />
 
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Submit
-          </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+          ></Button>
         </Box>
       </main>
       <footer className={styles.footer}>
