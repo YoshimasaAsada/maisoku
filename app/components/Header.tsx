@@ -16,6 +16,9 @@ export default function Header() {
           <Button color="inherit" href="/login">
             Login
           </Button>
+          <Button color="inherit" href="/signup">
+            Signup
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

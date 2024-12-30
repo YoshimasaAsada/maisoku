@@ -1,8 +1,8 @@
 import React from "react";
 import { TextField, Button, Box, Typography } from "@mui/material";
-import { login } from "./actions";
+import { signup } from "./actions";
 
-export default function LoginPage() {
+export default function SignUpPage() {
   return (
     <Box
       component="form"
@@ -20,8 +20,18 @@ export default function LoginPage() {
       }}
     >
       <Typography variant="h5" component="h1" align="center" gutterBottom>
-        Login
+        SignUp
       </Typography>
+
+      <TextField
+        id="name"
+        name="name"
+        type="name"
+        label="Name"
+        variant="outlined"
+        required
+        fullWidth
+      />
 
       <TextField
         id="email"
@@ -44,13 +54,13 @@ export default function LoginPage() {
       />
 
       <Button
-        variant="contained"
-        color="primary"
-        formAction={login}
+        variant="outlined"
+        color="secondary"
+        formAction={signup}
         type="submit"
         fullWidth
       >
-        Log in
+        Sign up
       </Button>
     </Box>
   );
