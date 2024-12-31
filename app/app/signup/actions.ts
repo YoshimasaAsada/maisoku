@@ -16,12 +16,13 @@ export async function signup(formData: FormData) {
 
   const { data, error } = await supabase.auth.signUp({ email, password });
 
-  const userData = await supabase.from("user").insert({
+  const userData = await supabase.from("seller").insert({
     name: name,
     auth_id: data?.user?.id,
   });
 
   console.log(error);
+  console.log(userData);
 
   if (userData.error) {
     redirect("/error");
