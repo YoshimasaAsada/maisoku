@@ -3,35 +3,37 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export default async function registerMaisoku(formData: FormData) {
+export async function registerMaisoku(formData: FormData) {
   const supabase = await createClient();
+  const user = await supabase.auth.getUser();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
+  // 売主のIDを取得
+  const sellerId = await supabase
+    .from("seller")
+    .select("id")
+    .eq("auth_id", user.data?.user?.id)
+    .single();
+
+  // フォームデータを取得
   const data = {
     address: formData.get("address") as string,
+    post_code: formData.get("postalCode") as string,
   };
 
-  console.log("Form data:", data);
-
-  // アドレスのバリデーション
-  if (!data.address || data.address.length < 5) {
-    console.error("Invalid address");
-    return { error: "Invalid address" };
-  }
-
-  const { data: insertData, error } = await supabase
-    .from("maisoku")
-    .insert([{ address: data.address }]);
-
-  console.log("Insert data:", insertData);
-  console.log("Insert error:", error);
+  // supabaseのmaisokuテーブルにデータを挿入
+  const { error } = await supabase.from("maisoku").insert([
+    {
+      address: data.address,
+      seller_id: sellerId.data?.id,
+      postal_code: data.post_code,
+    },
+  ]);
 
   if (error) {
     console.error("Error inserting data:", error);
-    redirect("/error");
+    throw new Error(error.message || "Unknown error occurred");
   }
 
-  revalidatePath("/", "layout");
-  redirect("/");
+  revalidatePath("/maisoku", "layout");
+  redirect("/maisoku");
 }
