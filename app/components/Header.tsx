@@ -13,6 +13,9 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Maisoku
           </Typography>
+          <Button color="inherit" href="/maisoku">
+            MaisokuAll
+          </Button>
           <Button color="inherit" href="/login">
             Login
           </Button>
