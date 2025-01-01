@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { createClient } from "@/utils/supabase/server";
-import { logout } from "@/app/logout/actions";
+import { logout } from "@/app/(main)/logout/actions";
 
 export default async function Header() {
   const supabase = await createClient();

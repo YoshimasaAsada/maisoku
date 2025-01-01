@@ -20,7 +20,7 @@ export default async function Page({
     <div>
       <h1>Data for ID: {id}</h1>
       <pre>{JSON.stringify(data, null, 2)}</pre>
-      <Link href={`/maisoku/${id}/download`}>Download</Link>
+      <Link href={`/download/maisoku/${id}`}>Download</Link>
     </div>
   );
 }
