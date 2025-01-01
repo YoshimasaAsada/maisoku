@@ -1,10 +1,11 @@
-"use client";
+import Header from "@/components/Header";
 import styles from "./page.module.css";
 import { Box } from "@mui/material";
 
 export default function Home() {
   return (
     <>
+      <Header />
       <div className={styles.page}>
         <main className={styles.main}>
           <Box
