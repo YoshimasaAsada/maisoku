@@ -22,8 +22,11 @@ export default async function Header() {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                   Maisoku
                 </Typography>
+                <Button color="inherit" href="/mypage">
+                  マイページ
+                </Button>
                 <Button color="inherit" href="/maisoku">
-                  MaisokuAll
+                  物件一覧
                 </Button>
                 <Button color="inherit" href="/maisoku/register">
                   マイソク登録
