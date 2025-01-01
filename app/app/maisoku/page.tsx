@@ -1,20 +1,40 @@
 import { createClient } from "@/utils/supabase/server";
+import { Box, Typography, Container, Grid, Paper } from "@mui/material";
 
 export default async function Page() {
   const supabase = await createClient();
   const maisoku = await supabase.from("maisoku").select();
 
   return (
-    <div>
-      <h1>maisoku</h1>
-      {maisoku?.data?.map((m) => (
-        <>
-          <p key={m.id}>
-            〒{m.postal_code}
-            {m.address}
-          </p>
-        </>
-      ))}
-    </div>
+    <Container maxWidth="md">
+      <Box sx={{ mt: 4, mb: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          物件一覧
+        </Typography>
+        <Grid container spacing={2}>
+          {maisoku?.data?.map((m) => (
+            <Grid item xs={12} sm={6} md={4} key={m.id}>
+              <Paper
+                sx={{
+                  p: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%",
+                }}
+              >
+                <Typography variant="body1" component="p">
+                  〒{m.postal_code}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {m.address}
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </Container>
   );
 }
