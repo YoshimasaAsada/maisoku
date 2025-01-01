@@ -28,6 +28,6 @@ export async function signup(formData: FormData) {
     redirect("/error");
   }
 
-  revalidatePath("/private", "layout");
-  redirect("/private");
+  revalidatePath("/mypage", "layout");
+  redirect("/mypage");
 }
