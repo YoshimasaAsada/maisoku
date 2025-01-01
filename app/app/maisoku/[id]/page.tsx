@@ -1,12 +1,13 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
+import React from "react";
 
-interface PageParams {
-  id: string;
-}
-
-export default async function Page({ params }: { params: PageParams }) {
-  const { id } = params; // URLからidを取得
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const supabase = await createClient();
 
   const { data } = await supabase.from("maisoku").select("*").eq("id", id);
